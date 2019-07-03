@@ -8,41 +8,41 @@
 <p class="govuk-body-s">Report ID: {{ report.id }}</p>
 <p class="govuk-body-s">Report status: {{ tag(report.status) }}</p>
 <p class="govuk-body-s">Created by {{ report.createdBy }} on {{ report.createdDate | date('L') }}</p>
-{% if report.updatedBy != ''  %}
+{% if not report.updatedBy == ' '  %}
  <p class="govuk-body-s">Updated by {{ report.updatedBy }} on {{ report.updatedDate | date('L') }}</p>   
 {% endif %}
-{% if report.approvedBy != ''  %}
+{% if not report.approvedBy == ' '  %}
  <p class="govuk-body-s">Approved by {{ report.approvedBy }} on {{ report.approvedDate | date('L') }}</p>   
 {% endif %}
 
 <h2 class="govuk-heading-m">Report details</h2>
 
-{% if report.previousRagRating != ' '  %}
+{% if not report.previousRagRating == ' '  %}
 <h3 class="hovuk-heading-m">Previous month's rag rating</h3>
 <p class="govuk-body-s">{{ report.previousRagRating | upper }}</p>   
 {% endif %}
 
-{% if report.currentRagRating != ' '  %}
+{% if not report.currentRagRating == ' '  %}
 <h3 class="hovuk-heading-m">Current month's rag rating</h3>
 <p class="govuk-body-s">{{ report.currentRagRating | upper }}</p>   
 {% endif %}
 
-{% if report.reasonsForRagRating != ' '  %}
+{% if not report.reasonsForRagRating == ' '  %}
 <h3 class="hovuk-heading-m">Reason for the RAG rating</h3>
  <p class="govuk-body-s">{{ report.reasonsForRagRating }}</p>     
 {% endif %}
 
-{% if report.recentAchievements != ' '  %}
+{% if not report.recentAchievements == ' '  %}
 <h3 class="hovuk-heading-m">This month's achievements / updates</h3>
  <p class="govuk-body-s">{{ report.recentAchievements }}</p>     
 {% endif %}
 
-{% if report.forwardLook != ' '  %}
+{% if not report.forwardLook == ' '  %}
 <h3 class="hovuk-heading-m">What's coming up in the next 2 months?</h3>
 <p class="govuk-body-s">{{ report.forwardLook }}</p>     
 {% endif %}
 
-{% if report.internationalAndDA != ' '  %}
+{% if not report.internationalAndDA == ' '  %}
 <h3 class="hovuk-heading-m">Notes for international and DA</h3>
 <p class="govuk-body-s">{{ report.internationalAndDA }}</p>     
 {% endif %}
