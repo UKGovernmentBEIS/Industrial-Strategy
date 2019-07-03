@@ -325,6 +325,12 @@ app.post(/^\/([^.]+)$/, function (req, res) {
   res.redirect('/' + req.params[0])
 })
 
+
+// Reset all data in session with what's in the sessionDataDefaults file.
+app.get('/resetSessionData', function (req, res, next) {
+  req.session.data = {}
+  res.redirect('/')
+})
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error(`Page not found: ${req.path}`)
