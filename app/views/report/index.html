@@ -3,7 +3,9 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">{{report.title}}</h1>
+<h1 class="govuk-heading-l">{{report.policyTitle}} policy report</h1>
+<p class="govuk-body-s">Policy owner: {{ report.owner }}</p>
+<p class="govuk-body-s">Report ID: {{ report.id }}</p>
 <p class="govuk-body-s">Report status: {{ tag(report.status) }}</p>
 <p class="govuk-body-s">Created by {{ report.createdBy }} on {{ report.createdDate | date('L') }}</p>
 {% if report.updatedBy != ''  %}
@@ -14,4 +16,35 @@
 {% endif %}
 
 <h2 class="govuk-heading-m">Report details</h2>
+
+{% if report.previousRagRating != ' '  %}
+<h3 class="hovuk-heading-m">Previous month's rag rating</h3>
+<p class="govuk-body-s">{{ report.previousRagRating | upper }}</p>   
+{% endif %}
+
+{% if report.currentRagRating != ' '  %}
+<h3 class="hovuk-heading-m">Current month's rag rating</h3>
+<p class="govuk-body-s">{{ report.currentRagRating | upper }}</p>   
+{% endif %}
+
+{% if report.reasonsForRagRating != ' '  %}
+<h3 class="hovuk-heading-m">Reason for the RAG rating</h3>
+ <p class="govuk-body-s">{{ report.reasonsForRagRating }}</p>     
+{% endif %}
+
+{% if report.recentAchievements != ' '  %}
+<h3 class="hovuk-heading-m">This month's achievements / updates</h3>
+ <p class="govuk-body-s">{{ report.recentAchievements }}</p>     
+{% endif %}
+
+{% if report.forwardLook != ' '  %}
+<h3 class="hovuk-heading-m">What's coming up in the next 2 months?</h3>
+<p class="govuk-body-s">{{ report.forwardLook }}</p>     
+{% endif %}
+
+{% if report.internationalAndDA != ' '  %}
+<h3 class="hovuk-heading-m">Notes for international and DA</h3>
+<p class="govuk-body-s">{{ report.internationalAndDA }}</p>     
+{% endif %}
+
 {% endblock %}

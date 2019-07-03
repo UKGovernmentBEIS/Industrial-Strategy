@@ -15,12 +15,13 @@ router.use(function (req, res, next) {
 })
 
 router.post('/create-a-report/confirmation', function (req, res, next) {
+  var id = generateID(2456, 9643)
   var reportDetails = {
-    id: generateID(2456, 9643),
-    title: '',
-    area: '',
+    id: id,
+    policyTitle: req.session.data.report.policyTitle,
+    area: 'People',
     departmentId: '',
-    owner: '',
+    owner: "Sinead O'Sullivan",
     status: 'Created',
     createdDate: req.session.data.todaysDate,
     createdBy: 'Policy reporter',
@@ -28,15 +29,15 @@ router.post('/create-a-report/confirmation', function (req, res, next) {
     updatedBy: '',
     approvedDate: '',
     approvedBy: '',
-    currentRagRating: '',
-    previousRagRating: '',
-    reasonsForRagRating: '',
-    recentAchievents: '',
-    forwardLook: '',
-    internationalAndDA: ''
+    currentRagRating: req.session.data.report.currentRagRating,
+    previousRagRating: 'amber',
+    reasonsForRagRating: req.session.data.report.reasonsForRagRating,
+    recentAchievements: req.session.data.report.recentAchievements,
+    forwardLook: req.session.data.report.forwardLook,
+    internationalAndDA: req.session.data.report.internationalAndDA || ''
   }
   req.session.data.reports.push(reportDetails)
-  req.session.data.report = '' // clear current data
+  req.session.data.report.id = id
   next()
 })
 

@@ -9,7 +9,7 @@
 <form action="/create-a-report/confirmation" method="post">
 {{ govukSelect({
   id: "select-policy",
-  name: "select-policy",
+  name: "report[policyTitle]",
   label: {
     text: "What policy are you reporting on?"
   },
@@ -23,8 +23,8 @@
       text: "A"
     },
     {
-      value: "b",
-      text: "B"
+      value: "National Retraining Scheme",
+      text: "National Retraining Scheme"
     },
     {
       value: "c",
@@ -37,9 +37,9 @@
   ]
 }) }}
 
-{{ govukSelect({
+{# {{ govukSelect({
   id: "policy-status",
-  name: "policy-status",
+  name: "report[status]",
   label: {
     text: "Policy status"
   },
@@ -65,107 +65,153 @@
       text: "D"
     }
   ]
+}) }} #}
+
+{{ govukRadios({
+  classes: "govuk-radios--inline rag-rating",
+  idPrefix: "policy-previousRagRating",
+  name: "report[previousRagRating]",
+  fieldset: {
+    legend: {
+      text: "Previous month's policy RAG Rating"
+    }
+  },
+  hint: {
+    text: "Previous month's RAG rating can not be changed"
+  },
+  items: [
+    {
+      value: "red",
+      text: "red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--red'
+      },
+      disabled: true
+    },
+    {
+      value: "amber-red",
+      text: "amber-red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-red'
+      },
+      disabled: true
+    },
+    {
+      value: "amber",
+      text: "amber",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber'
+      },
+      checked: true,
+      disabled: true
+    },
+    {
+      value: "amber-green",
+      text: "amber-green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-green'
+      },
+      disabled: true
+    },
+    {
+      value: "green",
+      text: "green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--green'
+      },
+      disabled: true
+    }
+  ]
 }) }}
 
-  {{ govukRadios({
-    classes: "govuk-radios--inline rag-rating",
-    idPrefix: "delivery-confidence",
-    name: "delivery-confidence",
-    fieldset: {
-      legend: {
-        text: "Delivery confidence"
+{{ govukRadios({
+  classes: "govuk-radios--inline rag-rating",
+  idPrefix: "policy-currentRagRating",
+  name: "report[currentRagRating]",
+  fieldset: {
+    legend: {
+      text: "Current month's policy RAG rating"
+    }
+  },
+  items: [
+    {
+      value: "red",
+      text: "red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--red'
       }
     },
-    items: [
-      {
-        value: "Red",
-        text: "Red",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--red'
-        }
-      },
-      {
-        value: "amber-red",
-        text: "amber-red",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--amber-red'
-        }
-      },
-      {
-        value: "Amber",
-        text: "Amber",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--amber'
-        }
-      },
-      {
-        value: "amber-green",
-        text: "amber-green",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--amber-green'
-        }
-      },
-      {
-        value: "Green",
-        text: "Green",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--green'
-        }
-      }
-    ]
-  }) }}
-
-  {{ govukRadios({
-    classes: "govuk-radios--inline rag-rating",
-    idPrefix: "delivery-confidence-last-month",
-    name: "delivery-confidence-last-month",
-    fieldset: {
-      legend: {
-        text: "Last month's delivery confidence"
+    {
+      value: "amber-red",
+      text: "amber-red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-red'
       }
     },
-    items: [
-      {
-        value: "Red",
-        text: "Red",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--red'
-        }
-      },
-      {
-        value: "amber-red",
-        text: "amber-red",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--amber-red'
-        }
-      },
-      {
-        value: "Amber",
-        text: "Amber",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--amber'
-        }
-      },
-      {
-        value: "amber-green",
-        text: "amber-green",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--amber-green'
-        }
-      },
-      {
-        value: "Green",
-        text: "Green",
-        label: {
-          classes: 'rag-rating_label rag-rating_label--green'
-        }
+    {
+      value: "amber",
+      text: "amber",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber'
       }
-    ]
-  }) }}
+    },
+    {
+      value: "amber-green",
+      text: "amber-green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-green'
+      }
+    },
+    {
+      value: "green",
+      text: "green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--green'
+      }
+    }
+  ]
+}) }}
 
-  {{ govukButton({
-    text: "Submit the report"
-  }) }}
+{{ govukCharacterCount({
+  id: "rag-rating-reason",
+  name: "report[reasonsForRagRating]",
+  maxlength: 200,
+  label: {
+    text: "Reason for the RAG rating"
+  }
+}) }}
+
+{{ govukTextarea({
+  id: "recentAchievements",
+  name: "report[recentAchievements]",
+  rows: 8,
+  label: {
+    text: "This month's achievements / updates"
+  }
+}) }}
+
+{{ govukTextarea({
+  id: "forwardLook",
+  name: "report[forwardLook]",
+  rows: 8,
+  label: {
+    text: "What's coming up in the next 2 months?"
+  }
+}) }}
+
+{{ govukTextarea({
+  id: "internationalAndDA",
+  name: "report[internationalAndDA]",
+  rows: 8,
+  label: {
+    text: "Notes for international and DA"
+  }
+}) }}
+
+
+{{ govukButton({
+  text: "Create the report"
+}) }}
 </form>
 
 {% endblock %}

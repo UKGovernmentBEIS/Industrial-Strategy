@@ -7,7 +7,7 @@
 {% if data['reports'] != '' %}
 <ul class='govuk-list govuk-list--bullet'>
 {% for report in data['reports'] %}
-  <li><a class='govuk-link' href="/report/{{report.id}}">Report</a> {{ tag(report.status)}} </li>
+  <li><a class='govuk-link' href="/report/{{report.id}}">Report for: {{report.policyTitle}} policy</a> {{ tag(report.status)}} </li>
 {% endfor %}
 </ul>
 {% else %}

@@ -1,5 +1,10 @@
 {% extends "layout_nongov.html" %}
 
 {% block content %}
-yes
+{{ govukPanel({
+    titleText: "Report created",
+    html: "Report ID: <br><strong>" + data['report']['id']+ "</strong>"
+}) }}
+
+<p class="govuk-body-s">You can now <a href="/reports" class="govuk-link">view</a> the created report and have it approved</p>
 {% endblock %}
