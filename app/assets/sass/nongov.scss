@@ -62,3 +62,17 @@
 .rag-rating .govuk-radios__item {
   margin-right: 0px;
 }
+
+// custom report status tag
+.app-tag {
+  @include ms-bgColor-white;
+  @include ms-fontColor-gray150;
+  @include ms-fontSize-12;
+}
+
+.app-tag--approved {
+  @include ms-fontColor-sharedGreen10
+}
+.app-tag--changes-requested {
+  @include ms-fontColor-sharedRed10;
+}
