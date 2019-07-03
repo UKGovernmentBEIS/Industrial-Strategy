@@ -43,7 +43,9 @@
 {% endblock %}
 
 {% set bodyClasses = 'ms-Fabric' %}
-{% set pageTitle = serviceName  %}
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
 {% block main %}
 <main class="govuk-!-padding-top-9 govuk-!-padding-left-2 govuk-!-padding-right-2">
 <div class="ms-Grid" dir="ltr">
