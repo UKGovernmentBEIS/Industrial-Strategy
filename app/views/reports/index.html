@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if data['reports'] %}
+{% if data['reports'] != '' %}
 <ul>
 {% for report in data['reports'] %}
   <li><a href="/report:id">Create a new report</a></li>
