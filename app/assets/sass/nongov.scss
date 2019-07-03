@@ -76,3 +76,27 @@
 .app-tag--changes-requested {
   @include ms-fontColor-sharedRed10;
 }
+
+// fabric ui buttons
+.app-button {
+  @include ms-fontSize-16;
+  box-shadow: none;
+  padding: 10px;
+  @include ms-fontColor-gray220;
+  @include ms-borderColor-gray170;
+  @include ms-bgColor-white;
+  &:hover {
+    @include ms-bgColor-gray10;
+    @include ms-fontColor-gray220;
+  }
+}
+
+.app-button--primary {
+  @include ms-bgColor-sharedCyanBlue10;
+  @include ms-fontColor-white;
+  border: 0; 
+  &:hover {
+    @include ms-fontColor-white;
+    @include ms-bgColor-sharedCyanBlue20
+  }
+}
