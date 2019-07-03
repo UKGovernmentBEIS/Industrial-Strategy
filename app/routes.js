@@ -18,13 +18,22 @@ router.post('/create-a-report/confirmation', function (req, res, next) {
   var reportDetails = {
     id: generateID(2456, 9643),
     title: '',
+    area: '',
+    departmentId: '',
+    owner: '',
     status: 'Created',
     createdDate: req.session.data.todaysDate,
     createdBy: 'Policy reporter',
     updatedDate: '',
     updatedBy: '',
     approvedDate: '',
-    approvedBy: ''
+    approvedBy: '',
+    currentRagRating: '',
+    previousRagRating: '',
+    reasonsForRagRating: '',
+    recentAchievents: '',
+    forwardLook: '',
+    internationalAndDA: ''
   }
   req.session.data.reports.push(reportDetails)
   req.session.data.report = '' // clear current data
