@@ -1,0 +1,7 @@
+{% from "tag/macro.njk" import govukTag %}
+{% macro tag(status) %}
+  {{ govukTag({
+    text: status,
+    classes: 'app-tag app-tag--'+ status | lower
+  }) }}
+{% endmacro %}
