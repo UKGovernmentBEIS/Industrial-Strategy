@@ -1,0 +1,15 @@
+{% extends "layout_nongov.html" %}
+
+{% block content %}
+
+{% if data['reports'] %}
+<ul>
+{% for report in data['reports'] %}
+  <li><a href="/report:id">Create a new report</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>There are no reports to view at the moment</p>
+{% endif %}
+
+{% endblock %}

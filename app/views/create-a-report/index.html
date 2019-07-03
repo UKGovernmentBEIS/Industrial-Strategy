@@ -1,0 +1,171 @@
+
+{% extends "layout_nongov.html" %}
+
+{% block pageTitle %}
+  Create a new report
+{% endblock %}
+
+{% block content %}
+<form action="/create-a-report/confirmation" method="post">
+{{ govukSelect({
+  id: "select-policy",
+  name: "select-policy",
+  label: {
+    text: "What policy are you reporting on?"
+  },
+  items: [
+    {
+      value: "",
+      text: "Select a policy"
+    },
+    {
+      value: "a",
+      text: "A"
+    },
+    {
+      value: "b",
+      text: "B"
+    },
+    {
+      value: "c",
+      text: "C"
+    },
+    {
+      value: "d",
+      text: "D"
+    }
+  ]
+}) }}
+
+{{ govukSelect({
+  id: "policy-status",
+  name: "policy-status",
+  label: {
+    text: "Policy status"
+  },
+  items: [
+    {
+      value: "",
+      text: "Select a status"
+    },
+    {
+      value: "a",
+      text: "A"
+    },
+    {
+      value: "b",
+      text: "B"
+    },
+    {
+      value: "c",
+      text: "C"
+    },
+    {
+      value: "d",
+      text: "D"
+    }
+  ]
+}) }}
+
+  {{ govukRadios({
+    classes: "govuk-radios--inline rag-rating",
+    idPrefix: "delivery-confidence",
+    name: "delivery-confidence",
+    fieldset: {
+      legend: {
+        text: "Delivery confidence"
+      }
+    },
+    items: [
+      {
+        value: "Red",
+        text: "Red",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--red'
+        }
+      },
+      {
+        value: "amber-red",
+        text: "amber-red",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--amber-red'
+        }
+      },
+      {
+        value: "Amber",
+        text: "Amber",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--amber'
+        }
+      },
+      {
+        value: "amber-green",
+        text: "amber-green",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--amber-green'
+        }
+      },
+      {
+        value: "Green",
+        text: "Green",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--green'
+        }
+      }
+    ]
+  }) }}
+
+  {{ govukRadios({
+    classes: "govuk-radios--inline rag-rating",
+    idPrefix: "delivery-confidence-last-month",
+    name: "delivery-confidence-last-month",
+    fieldset: {
+      legend: {
+        text: "Last month's delivery confidence"
+      }
+    },
+    items: [
+      {
+        value: "Red",
+        text: "Red",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--red'
+        }
+      },
+      {
+        value: "amber-red",
+        text: "amber-red",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--amber-red'
+        }
+      },
+      {
+        value: "Amber",
+        text: "Amber",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--amber'
+        }
+      },
+      {
+        value: "amber-green",
+        text: "amber-green",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--amber-green'
+        }
+      },
+      {
+        value: "Green",
+        text: "Green",
+        label: {
+          classes: 'rag-rating_label rag-rating_label--green'
+        }
+      }
+    ]
+  }) }}
+
+  {{ govukButton({
+    text: "Submit the report"
+  }) }}
+</form>
+
+{% endblock %}
