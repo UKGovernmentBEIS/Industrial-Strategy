@@ -1,11 +1,13 @@
 {% extends "layout_nongov.html" %}
+{% from "includes/macros/tag.njk" import tag %}
+
 
 {% block content %}
 
 {% if data['reports'] != '' %}
-<ul>
+<ul class='govuk-list govuk-list--bullet'>
 {% for report in data['reports'] %}
-  <li><a href="/report:id">Create a new report</a></li>
+  <li><a class='govuk-link' href="/report/{{report.id}}">Report</a> {{ tag(report.status)}} </li>
 {% endfor %}
 </ul>
 {% else %}

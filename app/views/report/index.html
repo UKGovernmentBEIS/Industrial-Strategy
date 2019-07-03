@@ -1,0 +1,17 @@
+{% extends "layout_nongov.html" %}
+{% from "includes/macros/tag.njk" import tag %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">{{report.title}}</h1>
+<p class="govuk-body-s">Report status: {{ tag(report.status) }}</p>
+<p class="govuk-body-s">Created by {{ report.createdBy }} on {{ report.createdDate | date('L') }}</p>
+{% if report.updatedBy != ''  %}
+ <p class="govuk-body-s">Updated by {{ report.updatedBy }} on {{ report.updatedDate | date('L') }}</p>   
+{% endif %}
+{% if report.approvedBy != ''  %}
+ <p class="govuk-body-s">Approved by {{ report.approvedBy }} on {{ report.approvedDate | date('L') }}</p>   
+{% endif %}
+
+<h2 class="govuk-heading-m">Report details</h2>
+{% endblock %}
