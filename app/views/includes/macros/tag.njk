@@ -2,6 +2,6 @@
 {% macro tag(status) %}
   {{ govukTag({
     text: status,
-    classes: 'app-tag app-tag--'+ status | lower
+    classes: 'app-tag app-tag--'+ status | replace(" ", "-") | lower
   }) }}
 {% endmacro %}

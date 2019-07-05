@@ -1,8 +1,10 @@
 {% extends "layout_nongov.html" %}
 
 {% block content %}
+
+
 {{ govukPanel({
-    classes: 'ms-bgColor-sharedCyanBlue10',
+    classes: "ms-bgColor-sharedCyanBlue10",
     titleText: "Report created",
     html: "Report ID: <br><strong>" + data['report']['id']+ "</strong>"
 }) }}

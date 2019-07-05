@@ -42,6 +42,7 @@ router.post('/create-a-report/confirmation', function (req, res, next) {
 })
 
 router.get('/report/:id/:page?/:subpage?', function (req, res, next) {
+  if (!req.params.page) {}
   res.locals.report = req.session.data.reports.filter(function (report) {
     if (report.id === req.params.id) {
       return report
@@ -49,8 +50,46 @@ router.get('/report/:id/:page?/:subpage?', function (req, res, next) {
   })[0]
   if (!req.params.page) {
     res.render('report/index')
-  } else {
+  } else if (req.params.subpage) {
     res.render('report/' + req.params.page + '/' + req.params.subpage)
+  } else {
+    res.render('report/' + req.params.page)
   }
 })
+
+router.post('/report/:id/action', function (req, res) {
+  var selectedReport = req.session.data.reports.filter(function (report) {
+    if (report.id === req.params.id) {
+      return report
+    }
+  })[0]
+  var actionTaken = req.session.data.actionTaken
+  if (actionTaken === 'changes-requested') {
+    res.redirect('/report/' + selectedReport.id + '/request-changes')
+  } else if (actionTaken === 'approve') {
+    console.log(req.session.data.reports)
+    req.session.data.reports.find(function (item, index) {
+      if (item.id === req.params.id) {
+        req.session.data.reports[index].status = 'Approved'
+        req.session.data.reports[index].approvedBy = 'Policy Deputy director'
+        req.session.data.reports[index].requestedChangesBy = 'Policy Deputy director'
+        req.session.data.reports[index].approvedDate = req.session.data.todaysDate
+      }
+    })
+    res.redirect('/report/' + selectedReport.id + '/approved')
+  }
+})
+
+router.post('/report/:id/request-changes', function (req, res) {
+  req.session.data.reports.find(function (item, index) {
+    if (item.id === req.params.id) {
+      req.session.data.reports[index].status = 'Changes requested'
+      req.session.data.reports[index].requestedChanges = req.session.data.report.requestedChanges
+      req.session.data.reports[index].requestedChangesBy = 'Policy Deputy director'
+      req.session.data.reports[index].requestedChangesDate = req.session.data.todaysDate
+    }
+  })
+  res.redirect('confirmation')
+})
+
 module.exports = router

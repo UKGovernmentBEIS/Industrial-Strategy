@@ -78,25 +78,47 @@
 }
 
 // fabric ui buttons
-.app-button {
+.app-button,
+.app-button:link {
   @include ms-fontSize-16;
   box-shadow: none;
   padding: 10px;
-  @include ms-fontColor-gray220;
+  color: $ms-color-gray220 !important;
   @include ms-borderColor-gray170;
   @include ms-bgColor-white;
-  &:hover {
+  &:hover,
+  &:focus {
     @include ms-bgColor-gray10;
     @include ms-fontColor-gray220;
   }
 }
 
-.app-button--primary {
+.app-button--primary,
+.app-button--primary:link {
   @include ms-bgColor-sharedCyanBlue10;
-  @include ms-fontColor-white;
-  border: 0; 
-  &:hover {
-    @include ms-fontColor-white;
+  color: $ms-color-white !important;
+  border: 2px solid transparent; 
+  &:hover,
+  &:focus {
+    color: $ms-color-white !important;
     @include ms-bgColor-sharedCyanBlue20
+  }
+}
+
+// notice box
+.notice-box {
+  border: 2px solid $ms-color-communicationShade20;
+  padding:  govuk-spacing(4) govuk-spacing(3) 0 govuk-spacing(3);
+  margin-bottom: govuk-spacing(5);
+  &__content {
+    white-space: pre-wrap;
+  }
+}
+
+// header links
+.header-link {
+  float: right;
+  &+& {
+    margin-right: 10px;
   }
 }

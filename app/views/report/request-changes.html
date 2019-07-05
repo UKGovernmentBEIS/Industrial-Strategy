@@ -1,0 +1,19 @@
+{% extends "layout_nongov.html" %}
+
+{% block content %}
+<form action="/report/{{report.id}}/request-changes" method='post'>
+<h1 class="govuk-heading-l">What changes to report {{report.id}} would you like to request?</h1>
+{{ govukTextarea({
+  id: "requested-changes",
+  name: "report[requestedChanges]",
+  rows: "8",
+  label: {
+    text: "Please specify the necessary changes"
+  }
+}) }}
+{{ govukButton({
+    text: "Request changes",
+    classes: 'app-button app-button--primary'
+}) }}
+</form>
+{% endblock %}

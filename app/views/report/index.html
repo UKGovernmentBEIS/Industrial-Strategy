@@ -7,12 +7,24 @@
 <p class="govuk-body-s">Policy owner: {{ report.owner }}</p>
 <p class="govuk-body-s">Report ID: {{ report.id }}</p>
 <p class="govuk-body-s">Report status: {{ tag(report.status) }}</p>
-<p class="govuk-body-s">Created by {{ report.createdBy }} on {{ report.createdDate | date('L') }}</p>
+<p class="govuk-body-s">Created by {{ report.createdBy }} on {{ report.createdDate | date('LLL') }}</p>
 {% if not report.updatedBy == ' '  %}
- <p class="govuk-body-s">Updated by {{ report.updatedBy }} on {{ report.updatedDate | date('L') }}</p>   
+ <p class="govuk-body-s">Updated by {{ report.updatedBy }} on {{ report.updatedDate | date('LLL') }}</p>   
 {% endif %}
 {% if not report.approvedBy == ' '  %}
- <p class="govuk-body-s">Approved by {{ report.approvedBy }} on {{ report.approvedDate | date('L') }}</p>   
+ <p class="govuk-body-s">Approved by {{ report.approvedBy }} on {{ report.approvedDate | date('LLL') }}</p>   
+{% endif %}
+
+
+
+{% if report.requestedChanges %}
+<h2 class="govuk-heading-m">Changes requested</h2>
+<div aria-label='notice' aria-live="polite" class="notice-box">
+<p class="govuk-body-s">The following changes have been requested by {{report.requestedChangesBy}} on {{ report.requestedChangesDate | date('LLL') }} </p>
+<p class="govuk-body-s notice-box__content">
+{{ report.requestedChanges }}
+</p>
+</div>
 {% endif %}
 
 <h2 class="govuk-heading-m">Report details</h2>
@@ -47,4 +59,23 @@
 <p class="govuk-body-s">{{ report.internationalAndDA }}</p>     
 {% endif %}
 
+{% if data['user'] and 'approver' in data['user'] %}
+<form action="/report/{{report.id}}/action" method="post">
+{% if 'approved' not in report.status | lower %}
+{{ govukButton({
+    text: "Request changes to the report",
+    classes: 'app-button',
+    name: 'actionTaken',
+    value: 'changes-requested'
+}) }}
+   {{ govukButton({
+    text: "Approve the report",
+    classes: 'app-button app-button--primary',
+    name: 'actionTaken',
+    value: 'approve'
+}) }} 
+{% endif %}
+
+</form>
+{% endif %}
 {% endblock %}
