@@ -10,6 +10,9 @@ router.use(function (req, res, next) {
   if (!req.session.data.reports) {
     req.session.data.reports = []
   }
+  if (!req.session.data.user) {
+    req.session.data.user = 'reporter'
+  }
   req.session.data.todaysDate = new Date(Date.now()).toISOString()
   next()
 })

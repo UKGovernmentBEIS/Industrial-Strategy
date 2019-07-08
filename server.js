@@ -329,6 +329,7 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 // Reset all data in session with what's in the sessionDataDefaults file.
 app.get('/resetSessionData', function (req, res, next) {
   req.session.data = {}
+  req.session.data.user = 'reporter'
   res.redirect('/')
 })
 // Catch 404 and forward to error handler
