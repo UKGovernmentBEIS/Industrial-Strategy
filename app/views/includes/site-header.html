@@ -5,11 +5,19 @@
           Office 365
           </span>
            <a title='Reset session data' href='/resetSessionData' class="ms-fontColor-white ms-fontSize-16 header-link">
-        Sign out
+        Sign out (reset data)
         </a>
-        <a title='Reset session data' href='/?user=approver' class="ms-fontColor-white ms-fontSize-16 header-link">
-        Change user to approver
-        </a>
+        {% if data['user'] and 'approver' in data['user'] %}
+          <a title='set user to reporter' href='/?user=reporter' class="ms-fontColor-white ms-fontSize-16 header-link">
+            Change user to reporter
+            </a>
+        {% else %}
+          <a title='set user to approver' href='/?user=approver' class="ms-fontColor-white ms-fontSize-16 header-link">
+            Change user to approver
+          </a>
+        {% endif %}
+        
+        
     </div>
   </div>
   <div class="govuk-!-padding-left-2 govuk-!-padding-left-4 govuk-!-padding-right-4 govuk-!-padding-top-4 govuk-!-padding-bottom-4" role="banner">
