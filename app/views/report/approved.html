@@ -2,13 +2,12 @@
 
 {% block content %}
 
-
 {{ govukPanel({
     classes: "ms-bgColor-sharedCyanBlue10",
     titleText: "Report approved",
-    html: "Report ID: <br><strong>" + data['report']['id']+ "</strong>"
+    html: "Report ID: <br><strong>" + report.id+ "</strong>"
 }) }}
 
-<p class="govuk-body-s">You can now <a href="/reports" class="govuk-link">view</a> the created report and have it approved</p>
+<p class="govuk-body-s">You can go <a href="/reports" class="govuk-link">back</a> to the list if reports.</p>
 
 {% endblock %}

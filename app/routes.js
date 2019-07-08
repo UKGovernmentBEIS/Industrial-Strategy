@@ -67,7 +67,6 @@ router.post('/report/:id/action', function (req, res) {
   if (actionTaken === 'changes-requested') {
     res.redirect('/report/' + selectedReport.id + '/request-changes')
   } else if (actionTaken === 'approve') {
-    console.log(req.session.data.reports)
     req.session.data.reports.find(function (item, index) {
       if (item.id === req.params.id) {
         req.session.data.reports[index].status = 'Approved'
