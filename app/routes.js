@@ -91,4 +91,20 @@ router.post('/report/:id/request-changes', function (req, res) {
   res.redirect('confirmation')
 })
 
+router.post('/report/:id/amend-confirmation', function (req, res, next) {
+  req.session.data.reports.find(function (item, index) {
+    if (item.id === req.params.id) {
+      req.session.data.reports[index].status = 'requires approval'
+      req.session.data.reports[index].updatedBy = 'Policy reporter'
+      req.session.data.reports[index].updatedDate = req.session.data.todaysDate
+      req.session.data.reports[index].currentRagRating = req.session.data.report.currentRagRating
+      req.session.data.reports[index].reasonsForRagRating = req.session.data.report.reasonsForRagRating
+      req.session.data.reports[index].recentAchievements = req.session.data.report.recentAchievements
+      req.session.data.reports[index].forwardLook = req.session.data.report.forwardLook
+      req.session.data.reports[index].internationalAndDA = req.session.data.report.internationalAndDA
+    }
+  })
+  next()
+})
+
 module.exports = router

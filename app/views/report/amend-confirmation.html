@@ -1,0 +1,12 @@
+{% extends "layout_nongov.html" %}
+
+{% block content %}
+
+{{ govukPanel({
+    classes: "ms-bgColor-sharedCyanBlue10",
+    titleText: "Report amended",
+    html: "Report ID: <br><strong>" + report.id+ "</strong>"
+}) }}
+
+<p class="govuk-body-s">You can go <a href="/reports" class="govuk-link">back</a> to the list if reports.</p>
+{% endblock %}

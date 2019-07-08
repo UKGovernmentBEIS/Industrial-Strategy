@@ -24,8 +24,16 @@
 <p class="govuk-body-s notice-box__content">
 {{ report.requestedChanges }}
 </p>
+
+{{ govukButton({
+    text: "Amend the report",
+    classes: 'app-button',
+    href: "/report/" + report.id + "/amend",
+    value: 'approve'
+}) }} 
 </div>
 {% endif %}
+
 
 <h2 class="govuk-heading-m">Report details</h2>
 

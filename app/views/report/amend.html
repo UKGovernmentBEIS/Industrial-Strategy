@@ -1,0 +1,171 @@
+
+{% extends "layout_nongov.html" %}
+
+
+{% block pageTitle %}
+  Amend the report
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">Amend report for {{report.policyTitle}}</h1>
+<form action="/report/{{report.id}}/amend-confirmation" method="post">
+
+{# {{ govukRadios({
+  classes: "govuk-radios--inline rag-rating",
+  idPrefix: "policy-previousRagRating",
+  name: "report[previousRagRating]",
+  fieldset: {
+    legend: {
+      text: "Previous month's policy RAG Rating"
+    }
+  },
+  hint: {
+    text: "Previous month's RAG rating can not be changed"
+  },
+  items: [
+    {
+      value: "red",
+      text: "red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--red'
+      },
+      disabled: true
+    },
+    {
+      value: "amber-red",
+      text: "amber-red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-red'
+      },
+      disabled: true
+    },
+    {
+      value: "amber",
+      text: "amber",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber'
+      },
+      checked: true,
+      disabled: true
+    },
+    {
+      value: "amber-green",
+      text: "amber-green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-green'
+      },
+      disabled: true
+    },
+    {
+      value: "green",
+      text: "green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--green'
+      },
+      disabled: true
+    }
+  ]
+}) }} #}
+
+{{ govukRadios({
+  classes: "govuk-radios--inline rag-rating",
+  idPrefix: "policy-currentRagRating",
+  name: "report[currentRagRating]",
+  fieldset: {
+    legend: {
+      text: "Current month's policy RAG rating"
+    }
+  },
+  items: [
+    {
+      value: "red",
+      text: "red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--red'
+      },
+      checked: checked ("report.currentRagRating", 'red')
+    },
+    {
+      value: "amber-red",
+      text: "amber-red",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-red'
+      },
+      checked: checked ("report.currentRagRating", 'amber-red')
+    },
+    {
+      value: "amber",
+      text: "amber",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber'
+      },
+      checked: checked ("report.currentRagRating", 'amber')
+    },
+    {
+      value: "amber-green",
+      text: "amber-green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--amber-green'
+      },
+      checked: checked ("report.currentRagRating", 'amber-green')
+    },
+    {
+      value: "green",
+      text: "green",
+      label: {
+        classes: 'rag-rating_label rag-rating_label--green'
+      },
+      checked: checked ("report.currentRagRating", 'green')
+    }
+  ]
+}) }}
+
+{{ govukCharacterCount({
+  id: "rag-rating-reason",
+  name: "report[reasonsForRagRating]",
+  maxlength: 200,
+  label: {
+    text: "Reason for the RAG rating"
+  },
+  value: report.reasonsForRagRating
+}) }}
+
+{{ govukTextarea({
+  id: "recentAchievements",
+  name: "report[recentAchievements]",
+  rows: 8,
+  label: {
+    text: "This month's achievements / updates"
+  },
+  value: report.recentAchievements
+}) }}
+
+{{ govukTextarea({
+  id: "forwardLook",
+  name: "report[forwardLook]",
+  rows: 8,
+  label: {
+    text: "What's coming up in the next 2 months?"
+  },
+  value: report.forwardLook
+}) }}
+
+{{ govukTextarea({
+  id: "internationalAndDA",
+  name: "report[internationalAndDA]",
+  rows: 8,
+  label: {
+    text: "Notes for international and DA"
+  },
+  value: report.internationalAndDA
+}) }}
+
+
+{{ govukButton({
+  text: "Amend the report",
+  classes: 'app-button app-button--primary'
+}) }}
+</form>
+
+{% endblock %}
