@@ -10,9 +10,6 @@ router.use(function (req, res, next) {
   if (!req.session.data.reports) {
     req.session.data.reports = []
   }
-  if (!req.session.data.user) {
-    req.session.data.user = 'reporter'
-  }
   req.session.data.todaysDate = new Date(Date.now()).toISOString()
   next()
 })
@@ -25,7 +22,7 @@ router.post('/create-a-report/confirmation', function (req, res, next) {
     area: 'People',
     departmentId: '',
     owner: "Sinead O'Sullivan",
-    status: 'Created',
+    status: 'requires approval',
     createdDate: req.session.data.todaysDate,
     createdBy: 'Policy reporter',
     updatedDate: '',
