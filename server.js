@@ -331,6 +331,9 @@ app.get('/resetSessionData', function (req, res, next) {
   req.session.data = {}
   res.redirect('/')
 })
+app.get('/switch', function (req, res) {
+  res.redirect('back')
+})
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error(`Page not found: ${req.path}`)
