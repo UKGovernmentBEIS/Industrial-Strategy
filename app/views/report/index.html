@@ -4,6 +4,7 @@
 {% block content %}
 
 <h1 class="govuk-heading-l">{{report.policyTitle}} policy report</h1>
+<p class="govuk-body-s">Policy area: {{ report.area }}</p>
 <p class="govuk-body-s">Policy owner: {{ report.owner }}</p>
 <p class="govuk-body-s">Report ID: {{ report.id }}</p>
 <p class="govuk-body-s">Report status: {{ tag(report.status) }}</p>

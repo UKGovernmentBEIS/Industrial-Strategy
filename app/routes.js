@@ -16,12 +16,17 @@ router.use(function (req, res, next) {
 
 router.post('/create-a-report/confirmation', function (req, res, next) {
   var id = generateID(2456, 9643)
+  var selectedPolicy = req.session.data.policies.find(function (item) {
+    if (item.title.toLowerCase() === req.session.data.report.policyTitle.toLowerCase()) {
+      return item
+    }
+  })
   var reportDetails = {
     id: id,
-    policyTitle: req.session.data.report.policyTitle,
-    area: 'People',
+    policyTitle: selectedPolicy.title,
+    area: selectedPolicy.area,
     departmentId: '',
-    owner: "Sinead O'Sullivan",
+    owner: selectedPolicy.owner,
     status: 'requires approval',
     createdDate: req.session.data.todaysDate,
     createdBy: 'Policy reporter',
