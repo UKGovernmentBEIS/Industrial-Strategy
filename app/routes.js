@@ -76,7 +76,6 @@ router.post('/report/:id/action', function (req, res) {
       if (item.id === req.params.id) {
         req.session.data.reports[index].status = 'Approved'
         req.session.data.reports[index].approvedBy = 'Policy Deputy director'
-        req.session.data.reports[index].requestedChangesBy = 'Policy Deputy director'
         req.session.data.reports[index].approvedDate = req.session.data.todaysDate
       }
     })
@@ -102,6 +101,9 @@ router.post('/report/:id/amend-confirmation', function (req, res, next) {
       req.session.data.reports[index].status = 'requires approval'
       req.session.data.reports[index].updatedBy = 'Policy reporter'
       req.session.data.reports[index].updatedDate = req.session.data.todaysDate
+      req.session.data.reports[index].requestedChanges = ''
+      req.session.data.reports[index].requestedChangesBy = ''
+      req.session.data.reports[index].requestedChangesDate = ''
       req.session.data.reports[index].currentRagRating = req.session.data.report.currentRagRating
       req.session.data.reports[index].reasonsForRagRating = req.session.data.report.reasonsForRagRating
       req.session.data.reports[index].recentAchievements = req.session.data.report.recentAchievements
