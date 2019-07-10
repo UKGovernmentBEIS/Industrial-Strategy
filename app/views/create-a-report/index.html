@@ -13,7 +13,7 @@
   <label class="govuk-label" for="available-unit-types">
     What policy are you reporting on?
   </label>
-  <select class="govuk-select" id="select-policy" name="report[policyTitle]" >
+  <select class="govuk-select" id="select-policy" name="report[policyTitle]" onchange="showDiv('previous-month-rag-rating')">
         <option value="" {{ 'selected' if checked("report['policyTitle']", "") }}>Select a policy</option>
         {% for policy in data['policies'] %}
           <option value="{{ policy.title }}" >{{ policy.title }} - ({{ policy.area }})</option>
@@ -25,6 +25,9 @@
   classes: "govuk-radios--inline rag-rating",
   idPrefix: "policy-previousRagRating",
   name: "report[previousRagRating]",
+  formGroup: {
+    classes: 'previous-month-rag-rating govuk-visually-hidden'
+  },
   fieldset: {
     legend: {
       text: "Previous month's policy RAG Rating"
@@ -169,4 +172,12 @@
 }) }}
 </form>
 
+{% endblock %}
+{% block pageScripts %}
+<script>
+function showDiv(divClass){
+  document.getElementsByClassName(divClass)[0].classList.remove('govuk-visually-hidden');
+}
+</script>
+  
 {% endblock %}
