@@ -8,7 +8,12 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Amend report for {{report.policyTitle}}</h1>
+{% if report.status == 'draft' %}
+  <h1 class="govuk-heading-l">Complete the report for {{report.policyTitle}}</h1>
+{% else %}
+  <h1 class="govuk-heading-l">Amend report for {{report.policyTitle}}</h1>
+{% endif %}
+
 <form action="/report/{{report.id}}/amend-confirmation" method="post">
 
 {# {{ govukRadios({
@@ -161,11 +166,17 @@
   value: report.internationalAndDA
 }) }}
 
-
+{% if report.status == 'draft' %}
+{{ govukButton({
+  text: "Submit the report",
+  classes: 'app-button app-button--primary'
+}) }}
+{% else %}
 {{ govukButton({
   text: "Amend the report",
   classes: 'app-button app-button--primary'
 }) }}
+{% endif %}
 </form>
 
 {% endblock %}

@@ -27,7 +27,7 @@ router.post('/create-a-report/confirmation', function (req, res, next) {
     area: selectedPolicy.area,
     departmentId: '',
     owner: selectedPolicy.owner,
-    status: 'requires approval',
+    status: req.session.data.report.status ? req.session.data.report.status : 'requires approval',
     createdDate: req.session.data.todaysDate,
     createdBy: 'Policy reporter',
     updatedDate: '',
@@ -42,7 +42,8 @@ router.post('/create-a-report/confirmation', function (req, res, next) {
     internationalAndDA: req.session.data.report.internationalAndDA || ''
   }
   req.session.data.reports.push(reportDetails)
-  req.session.data.report.id = id
+  req.session.data.reportDetails = reportDetails
+  req.session.data.report = ''
   next()
 })
 

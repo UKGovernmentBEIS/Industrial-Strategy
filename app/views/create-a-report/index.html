@@ -167,6 +167,12 @@
 
 
 {{ govukButton({
+  text: "Save a draft",
+  classes: 'app-button',
+  name: "report[status]",
+  value: 'draft'
+}) }}
+{{ govukButton({
   text: "Create the report",
   classes: 'app-button app-button--primary'
 }) }}

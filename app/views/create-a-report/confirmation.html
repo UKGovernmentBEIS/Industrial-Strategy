@@ -1,11 +1,21 @@
 {% extends "layout_nongov.html" %}
 
 {% block content %}
+{% if data['reportDetails']['status'] and data['reportDetails']['status'] === 'draft' %}
+{{ govukPanel({
+    classes: 'ms-bgColor-sharedCyanBlue10',
+    titleText: "Report draft created",
+    html: "Report ID: <br><strong>" + data['reportDetails']['id'] + "</strong>"
+}) }}
+<p class="govuk-body-s">Return to the <a href="/report/{{ data['reportDetails']['id'] }}/amend" class="govuk-link">report </a> to complete it.</p>
+{% else %}
 {{ govukPanel({
     classes: 'ms-bgColor-sharedCyanBlue10',
     titleText: "Report created",
-    html: "Report ID: <br><strong>" + data['report']['id']+ "</strong>"
+    html: "Report ID: <br><strong>" + data['reportDetails']['id'] + "</strong>"
 }) }}
 
 <p class="govuk-body-s">You can now <a href="/reports" class="govuk-link">view</a> the created report and have it approved</p>
+{% endif %}
+
 {% endblock %}

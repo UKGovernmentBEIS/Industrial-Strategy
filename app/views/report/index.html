@@ -34,6 +34,17 @@
 }) }} 
 </div>
 {% endif %}
+{% if report.status == 'draft' %}
+<div aria-label='notice' aria-live="polite" class="notice-box">
+<p class="govuk-body-s">Report is still in draft.</p>
+{{ govukButton({
+    text: "Complete the report",
+    classes: 'app-button',
+    href: "/report/" + report.id + "/amend",
+    value: 'approve'
+}) }} 
+</div>
+{% endif %}
 
 
 <h2 class="govuk-heading-m">Report details</h2>
