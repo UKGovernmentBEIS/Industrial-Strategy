@@ -30,7 +30,7 @@
 }
 //rag rating radios
 .rag-rating_label {
-  font-size: 0;
+  text-transform: capitalize;
   &:after,
   &:before {
     border: transparent;
